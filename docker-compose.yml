@@ -23,6 +23,4 @@ services:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER} # username coming from local .env file
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD} # password coming from local .env file
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
-    depends_on:
-      - loki
     restart: always
