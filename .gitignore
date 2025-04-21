@@ -1,2 +1,3 @@
 loki/*
 !loki/loki.yml
+.env
