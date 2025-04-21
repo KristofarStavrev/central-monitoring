@@ -1,0 +1,28 @@
+services:
+  loki:
+    image: grafana/loki:3.4.3
+    container_name: loki
+    ports:
+      - "3100:3100"
+    user: "1003:999" # Give the Loki user the same UID and GID as the host user that owns the mapped volumes
+    command: -config.file=/home/loki/loki.yml
+    volumes:
+      - ./loki:/home/loki
+    restart: always
+
+  grafana:
+    image: grafana/grafana:11.6.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    user: "1003:999" # Give the Grafana user the same UID and GID as the host user that owns the mapped volumes
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+    depends_on:
+      - loki
+    restart: always

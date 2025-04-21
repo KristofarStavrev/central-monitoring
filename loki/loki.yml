@@ -1,0 +1,46 @@
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  log_level: info
+
+common:
+  path_prefix: /home/loki
+  replication_factor: 1
+  ring:
+    instance_addr: 127.0.0.1
+    kvstore:
+      store: inmemory
+
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+storage_config:
+  tsdb_shipper:
+    active_index_directory: /home/loki/index
+    cache_location: /home/loki/cache
+  filesystem:
+    directory: /home/loki/chunks
+
+limits_config:
+  retention_period: 2160h # 3 months
+  retention_stream:
+    - selector: '{job=".*"}'
+      priority: 1
+      period: 2160h # 3 months
+  reject_old_samples: true
+  reject_old_samples_max_age: 2160h # 3 months
+
+table_manager:
+  retention_deletes_enabled: true
+  retention_period: 2160h # 3 months
+
+analytics:
+  reporting_enabled: false
