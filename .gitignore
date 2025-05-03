@@ -1,3 +1,18 @@
+.env
+
+# Loki
 loki/*
 !loki/loki.yml
-.env
+
+# Grafana - refer to the below guide in case of questions
+# https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+grafana/*
+!grafana/grafana.ini
+!grafana/datasources
+grafana/datasources/*
+!grafana/datasources/loki.yaml
+
+# Prometheus
+prometheus/*
+!prometheus/prometheus.yml.template
+!prometheus/entrypoint.sh

@@ -24,3 +24,21 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD} # password coming from local .env file
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
     restart: always
+
+  prometheus:
+    image: prom/prometheus:v3.3.0
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yml.template:/etc/prometheus/prometheus.yml.template:ro
+      - ./prometheus/entrypoint.sh:/entrypoint.sh:ro
+      - ./prometheus:/prometheus
+    environment:
+      - PROMETHEUS_SCRAPE_TARGET=${PROMETHEUS_SCRAPE_TARGET} # URL coming from local .env file
+      - PROMETHEUS_AUTH_UNAME=${PROMETHEUS_AUTH_UNAME} # username coming from local .env file
+      - PROMETHEUS_AUTH_PASS=${PROMETHEUS_AUTH_PASS} # password coming from local .env file
+    ports:
+      - "9090:9090"
+    user: "1003:999" # Give the Prometheus user the same UID and GID as the host user that owns the mapped volumes
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    command: ["prometheus", "--config.file=/etc/prometheus/prometheus.yml"]
+    restart: always
