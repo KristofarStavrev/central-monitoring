@@ -8,9 +8,11 @@ loki/*
 # https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 grafana/*
 !grafana/grafana.ini
-!grafana/datasources
-grafana/datasources/*
-!grafana/datasources/loki.yaml
+!grafana/provisioning
+grafana/provisioning/dashboards/*
+grafana/provisioning/datasources/*
+!grafana/provisioning/datasources/loki.yaml
+!grafana/provisioning/datasources/prometheus.yaml
 
 # Prometheus
 prometheus/*
