@@ -5,7 +5,8 @@ scrape_configs:
   - job_name: 'fastapi_app'
     metrics_path: /metrics
     basic_auth:
-      username: "${PROMETHEUS_AUTH_UNAME}"
-      password: "${PROMETHEUS_AUTH_PASS}"
+      username: "__PROMETHEUS_AUTH_UNAME__"
+      password: "__PROMETHEUS_AUTH_PASS__"
     static_configs:
-      - targets: ["${PROMETHEUS_SCRAPE_TARGET}"]
+      - targets: ["__PROMETHEUS_SCRAPE_TARGET__"]
+

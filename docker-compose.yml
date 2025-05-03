@@ -29,8 +29,6 @@ services:
     image: prom/prometheus:v3.3.0
     container_name: prometheus
     volumes:
-      - ./prometheus/prometheus.yml.template:/etc/prometheus/prometheus.yml.template:ro
-      - ./prometheus/entrypoint.sh:/entrypoint.sh:ro
       - ./prometheus:/prometheus
     environment:
       - PROMETHEUS_SCRAPE_TARGET=${PROMETHEUS_SCRAPE_TARGET} # URL coming from local .env file
@@ -39,6 +37,6 @@ services:
     ports:
       - "9090:9090"
     user: "1003:999" # Give the Prometheus user the same UID and GID as the host user that owns the mapped volumes
-    entrypoint: ["/bin/sh", "/entrypoint.sh"]
-    command: ["prometheus", "--config.file=/etc/prometheus/prometheus.yml"]
+    entrypoint: ["/bin/sh", "/prometheus/entrypoint.sh"]
+    command: ["prometheus", "--config.file=/prometheus/prometheus.yml"]
     restart: always
