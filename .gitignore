@@ -11,8 +11,10 @@ grafana/*
 !grafana/provisioning
 grafana/provisioning/dashboards/*
 grafana/provisioning/datasources/*
-!grafana/provisioning/datasources/loki.yaml
-!grafana/provisioning/datasources/prometheus.yaml
+!grafana/provisioning/datasources/loki.yml
+!grafana/provisioning/datasources/prometheus.yml
+!grafana/provisioning/dashboards/dashboard.yml
+!grafana/provisioning/dashboards/sentiment_application_dashboard.json
 
 # Prometheus
 prometheus/*
