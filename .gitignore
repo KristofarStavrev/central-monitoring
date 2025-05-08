@@ -15,6 +15,7 @@ grafana/provisioning/datasources/*
 !grafana/provisioning/datasources/prometheus.yml
 !grafana/provisioning/dashboards/dashboard.yml
 !grafana/provisioning/dashboards/sentiment_application_dashboard.json
+!grafana/provisioning/dashboards/main.yml
 
 # Prometheus
 prometheus/*
