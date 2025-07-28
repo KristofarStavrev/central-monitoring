@@ -1,4 +1,4 @@
-# central-monitoring
+# Central Monitoring
 
 ## Overview
 This repository provides a ready-to-use setup for log and metrics monitoring using [Loki](https://grafana.com/oss/loki/), [Prometheus](https://prometheus.io/), and [Grafana](https://grafana.com/grafana/). It includes pre-configured dashboards and data sources for efficient log aggregation, metrics collection, and visualization.
